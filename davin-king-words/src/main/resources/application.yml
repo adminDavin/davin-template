@@ -1,0 +1,20 @@
+server:
+  port: 8082
+
+spring:  datasource:    name: dataSource
+    type: com.zaxxer.hikari.HikariDataSource    url: jdbc:mysql://127.0.0.1:3306/world?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&allowPublicKeyRetrieval=true  
+    username: root
+    password: 123456l
+    hikari:
+      connection-test-query: select now()
+      idle-timeout: 3000000
+      auto-commit: true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  task:    execution:      pool:        max-size: 16        queue-capacity: 100
+        keep-alive: 3600s
+
+logging:
+  file: ./logs/king-words.log  
+  
+mybatis:  mapper-locations: mappers/*.xml
+  type-aliases-package: com.king.words.model
